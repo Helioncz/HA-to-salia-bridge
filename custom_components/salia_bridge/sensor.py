@@ -24,6 +24,7 @@ async def async_setup_entry(
     entities: list[SensorEntity] = []
     for coord in data["coordinators"]:
         entities.append(SaliaPowerSensor(coord))
+        entities.append(SaliaActualPowerSensor(coord))
         entities.append(SaliaOfferedCurrentSensor(coord))
         entities.append(SaliaCurrentLimitSensor(coord))
         entities.append(SaliaStateSensor(coord))
@@ -60,6 +61,29 @@ class SaliaPowerSensor(_SaliaBase):
         try:
             offered = p0["ci"]["evse"]["basic"]["power"]["offered"]
             return round(float(offered))
+        except (KeyError, TypeError, ValueError):
+            return None
+
+
+class SaliaActualPowerSensor(_SaliaBase):
+    """Actual charging power from the charger's own meter (if it has one)."""
+
+    _attr_translation_key = "charger_actual_power"
+    _attr_native_unit_of_measurement = UnitOfPower.WATT
+    _attr_device_class = SensorDeviceClass.POWER
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def __init__(self, coordinator) -> None:
+        super().__init__(coordinator, "actual_power")
+
+    @property
+    def native_value(self) -> float | None:
+        p0 = self.coordinator.port0()
+        meter = (p0.get("metering") or {}).get("meter") or {}
+        if str(meter.get("available")) != "1":
+            return None  # no meter on this charger
+        try:
+            return round(float(p0["metering"]["power"]["active_total"]["actual"]))
         except (KeyError, TypeError, ValueError):
             return None
 

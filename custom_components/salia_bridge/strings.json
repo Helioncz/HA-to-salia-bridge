@@ -56,6 +56,9 @@
       "charger_power": {
         "name": "Nabízený výkon"
       },
+      "charger_actual_power": {
+        "name": "Skutečný výkon"
+      },
       "charger_offered_current": {
         "name": "Nabízený proud"
       },

@@ -56,6 +56,9 @@
       "charger_power": {
         "name": "Offered power"
       },
+      "charger_actual_power": {
+        "name": "Actual power"
+      },
       "charger_offered_current": {
         "name": "Offered current"
       },
