@@ -43,9 +43,8 @@ class SaliaChargingSwitch(CoordinatorEntity, SwitchEntity):
     def is_on(self) -> bool | None:
         p0 = self.coordinator.port0()
         pause = (p0.get("salia") or {}).get("pausecharging")
-        if pause is None:
-            return None
-        return str(pause) == "0"  # 0 = charging enabled
+        # Salia omits the flag when idle/no vehicle -> treat as "charging allowed".
+        return str(pause) != "1"  # 1 = paused
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         await self.coordinator.async_put({"salia/pausecharging": "0"})
