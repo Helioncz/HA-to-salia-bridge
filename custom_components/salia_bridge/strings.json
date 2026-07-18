@@ -1,0 +1,61 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Salia Bridge",
+        "description": "HA emuluje SMA Energy Meter a posílá výkon sítě nabíječkám Hardy Barth Salia (Mains type = SMA Energymeter). Vyber entity se síťovým výkonem a zadej SMA sériové číslo.",
+        "data": {
+          "sma_serial": "SMA sériové číslo (zadej stejné v Salii)",
+          "sign_invert": "Otočit znaménko (pokud Salia zaměňuje odběr/přetok)",
+          "power_total": "Výkon sítě – celkem (W, − = přetok)",
+          "power_l1": "Výkon sítě – L1 (W)",
+          "power_l2": "Výkon sítě – L2 (W)",
+          "power_l3": "Výkon sítě – L3 (W)",
+          "soc": "SOC baterie (%)",
+          "voltage_l1": "Napětí L1 (V)",
+          "voltage_l2": "Napětí L2 (V)",
+          "voltage_l3": "Napětí L3 (V)",
+          "multicast_interface": "Multicast rozhraní (IP HA na LAN, volitelné)",
+          "salia_host_1": "Salia 1 – IP adresa",
+          "salia_name_1": "Salia 1 – název",
+          "salia_host_2": "Salia 2 – IP adresa (volitelné)",
+          "salia_name_2": "Salia 2 – název"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Salia Bridge je již nastaven."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Salia Bridge – nastavení",
+        "data": {
+          "sma_serial": "SMA sériové číslo",
+          "sign_invert": "Otočit znaménko",
+          "power_total": "Výkon sítě – celkem (W)",
+          "power_l1": "Výkon sítě – L1 (W)",
+          "power_l2": "Výkon sítě – L2 (W)",
+          "power_l3": "Výkon sítě – L3 (W)",
+          "soc": "SOC baterie (%)",
+          "voltage_l1": "Napětí L1 (V)",
+          "voltage_l2": "Napětí L2 (V)",
+          "voltage_l3": "Napětí L3 (V)",
+          "multicast_interface": "Multicast rozhraní (IP HA)",
+          "salia_host_1": "Salia 1 – IP adresa",
+          "salia_name_1": "Salia 1 – název",
+          "salia_host_2": "Salia 2 – IP adresa",
+          "salia_name_2": "Salia 2 – název"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "charger_power": { "name": "Nabízený výkon" },
+      "charger_current_limit": { "name": "Limit proudu" },
+      "charger_state": { "name": "Stav" }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Salia Bridge",
+        "description": "HA emulates an SMA Energy Meter and feeds grid power to Hardy Barth Salia chargers (Mains type = SMA Energymeter). Pick the grid-power entities and set the SMA serial.",
+        "data": {
+          "sma_serial": "SMA serial number (enter the same in Salia)",
+          "sign_invert": "Invert sign (if Salia swaps import/export)",
+          "power_total": "Grid power – total (W, − = export)",
+          "power_l1": "Grid power – L1 (W)",
+          "power_l2": "Grid power – L2 (W)",
+          "power_l3": "Grid power – L3 (W)",
+          "soc": "Battery SOC (%)",
+          "voltage_l1": "Voltage L1 (V)",
+          "voltage_l2": "Voltage L2 (V)",
+          "voltage_l3": "Voltage L3 (V)",
+          "multicast_interface": "Multicast interface (HA LAN IP, optional)",
+          "salia_host_1": "Salia 1 – IP address",
+          "salia_name_1": "Salia 1 – name",
+          "salia_host_2": "Salia 2 – IP address (optional)",
+          "salia_name_2": "Salia 2 – name"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Salia Bridge is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Salia Bridge – settings",
+        "data": {
+          "sma_serial": "SMA serial number",
+          "sign_invert": "Invert sign",
+          "power_total": "Grid power – total (W)",
+          "power_l1": "Grid power – L1 (W)",
+          "power_l2": "Grid power – L2 (W)",
+          "power_l3": "Grid power – L3 (W)",
+          "soc": "Battery SOC (%)",
+          "voltage_l1": "Voltage L1 (V)",
+          "voltage_l2": "Voltage L2 (V)",
+          "voltage_l3": "Voltage L3 (V)",
+          "multicast_interface": "Multicast interface (HA IP)",
+          "salia_host_1": "Salia 1 – IP address",
+          "salia_name_1": "Salia 1 – name",
+          "salia_host_2": "Salia 2 – IP address",
+          "salia_name_2": "Salia 2 – name"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "charger_power": { "name": "Offered power" },
+      "charger_current_limit": { "name": "Current limit" },
+      "charger_state": { "name": "State" }
+    }
+  }
+}

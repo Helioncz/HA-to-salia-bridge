@@ -1,0 +1,12 @@
+{
+  "domain": "salia_bridge",
+  "name": "Salia Bridge (GoodWe/HA → SMA → Hardy Barth Salia)",
+  "codeowners": ["@helioncz"],
+  "config_flow": true,
+  "documentation": "https://github.com/Helioncz/HA-to-salia-bridge",
+  "integration_type": "hub",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/Helioncz/HA-to-salia-bridge/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
