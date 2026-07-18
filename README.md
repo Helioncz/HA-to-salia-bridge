@@ -102,6 +102,18 @@ For each configured charger:
 - `sensor.<name>_current_limit` – current limit (A)
 - `sensor.<name>_state` – Control-Pilot state (Volno / Připojeno / Nabíjí …)
 
+
+### Controls (per charger)
+
+Requires the charger to accept local control (works alongside surplus; for OCPP
+setups treat it as an override):
+
+- `number.<name>_charging_current` – set the charging current limit (6–16 A)
+- `switch.<name>_charging_enabled` – on = allow charging, off = pause
+
+These use the Salia local API (`PUT /api/secc` with `grid_current_limit` /
+`salia/pausecharging`), as documented by the evcc project.
+
 ## Notes
 
 - The SMA emulator broadcasts once per second.

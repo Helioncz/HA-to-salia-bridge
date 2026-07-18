@@ -53,10 +53,28 @@
   },
   "entity": {
     "sensor": {
-      "charger_power": { "name": "Offered power" },
-      "charger_offered_current": { "name": "Offered current" },
-      "charger_current_limit": { "name": "Current limit" },
-      "charger_state": { "name": "State" }
+      "charger_power": {
+        "name": "Offered power"
+      },
+      "charger_offered_current": {
+        "name": "Offered current"
+      },
+      "charger_current_limit": {
+        "name": "Current limit"
+      },
+      "charger_state": {
+        "name": "State"
+      }
+    },
+    "number": {
+      "set_current": {
+        "name": "Charging current"
+      }
+    },
+    "switch": {
+      "charging_enabled": {
+        "name": "Charging enabled"
+      }
     }
   }
 }

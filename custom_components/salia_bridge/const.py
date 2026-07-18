@@ -1,7 +1,7 @@
 """Constants for the Salia Bridge integration."""
 
 DOMAIN = "salia_bridge"
-PLATFORMS = ["sensor"]
+PLATFORMS = ["sensor", "number", "switch"]
 
 # --- Config keys: SMA energy-meter emulator ---
 CONF_SMA_SERIAL = "sma_serial"

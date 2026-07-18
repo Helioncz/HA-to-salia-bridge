@@ -42,3 +42,15 @@ class SaliaCoordinator(DataUpdateCoordinator):
 
     def port0(self) -> dict:
         return (self.data or {}).get("secc", {}).get("port0", {}) or {}
+
+    async def async_put(self, payload: dict) -> None:
+        """Send a control command to the charger (PUT /api/secc)."""
+        url = f"http://{self.host}/api/secc"
+        try:
+            async with async_timeout.timeout(8):
+                async with self._session.put(url, json=payload) as resp:
+                    resp.raise_for_status()
+        except (aiohttp.ClientError, TimeoutError) as err:
+            _LOGGER.error("Salia %s control failed (%s): %s", self.host, payload, err)
+            raise
+        await self.async_request_refresh()

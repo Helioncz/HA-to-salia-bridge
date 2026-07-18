@@ -53,10 +53,28 @@
   },
   "entity": {
     "sensor": {
-      "charger_power": { "name": "Nabízený výkon" },
-      "charger_offered_current": { "name": "Nabízený proud" },
-      "charger_current_limit": { "name": "Limit proudu" },
-      "charger_state": { "name": "Stav" }
+      "charger_power": {
+        "name": "Nabízený výkon"
+      },
+      "charger_offered_current": {
+        "name": "Nabízený proud"
+      },
+      "charger_current_limit": {
+        "name": "Limit proudu"
+      },
+      "charger_state": {
+        "name": "Stav"
+      }
+    },
+    "number": {
+      "set_current": {
+        "name": "Nabíjecí proud"
+      }
+    },
+    "switch": {
+      "charging_enabled": {
+        "name": "Nabíjení povoleno"
+      }
     }
   }
 }
