@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Salia Bridge">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#18b0a0"/>
+      <stop offset="1" stop-color="#0a7d8c"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="240" height="240" rx="48" fill="url(#bg)"/>
+
+  <!-- grid / inverter (left) -->
+  <g fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.95">
+    <rect x="40" y="86" width="58" height="84" rx="10"/>
+    <line x1="55" y1="108" x2="83" y2="108"/>
+    <line x1="55" y1="128" x2="83" y2="128"/>
+    <line x1="55" y1="148" x2="70" y2="148"/>
+  </g>
+
+  <!-- energy flow: lightning bolt (middle) -->
+  <path d="M150 70 L118 134 H142 L128 190 L172 118 H146 Z" fill="#ffe14d" stroke="#0a7d8c" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- wallbox / EV plug (right) -->
+  <g fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="186" y="82" width="30" height="92" rx="10"/>
+    <circle cx="201" cy="112" r="9" fill="#ffffff" stroke="none"/>
+    <path d="M201 132 v22" />
+  </g>
+</svg>

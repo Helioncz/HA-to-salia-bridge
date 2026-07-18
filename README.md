@@ -1,3 +1,5 @@
+<img src="icon.svg" width="96" align="right" alt="Salia Bridge logo" />
+
 # Salia Bridge
 
 [![HACS: Custom](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://hacs.xyz)
