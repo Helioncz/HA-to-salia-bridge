@@ -18,12 +18,35 @@ It does two things:
 This solves the common problem that the Salia can only read a fixed list of
 inverters/meters directly — now **HA is the meter**.
 
-## Why?
+## When to use this
+
+Use this if **any** of the following is true:
+
+- Your inverter/meter is **not in the Salia's "Mains type" list** at all.
+- Your inverter **is** in the list, but the Salia just **won't read it** — the
+  mains value stays at `0` / never appears.
+- You already have all the grid data in Home Assistant and want to **reuse it**
+  instead of wiring a second connection to the inverter.
+
+This is a **very common situation with GoodWe** inverters (ET/BT series): the
+Salia's GoodWe driver expects a Modbus TCP link that often can't be established —
+GoodWe's Modbus is typically **single-client** (Home Assistant / the app already
+holds it), lives only on the **Wi-Fi/UDP** interface (no Modbus TCP), or answers
+on a **different unit id** than the Salia assumes. The result is a Salia that
+"supports GoodWe" on paper but shows nothing in practice.
+
+Instead of fighting that, this integration makes **Home Assistant pretend to be
+an SMA Energy Meter** — a device the Salia reads reliably over multicast — and
+feeds it whatever grid data you already have. Works with GoodWe, Solax, Sungrow,
+Fronius, a standalone Shelly/Modbus meter… anything that ends up as an entity in
+HA.
+
+## How it works
 
 The Salia's "GoodWe / Sungrow / …" mains drivers need a live Modbus/UDP link to
-that specific device, which often isn't reachable (single-client Modbus, WiFi
+that specific device, which often isn't reachable (single-client Modbus, Wi-Fi
 only, wrong unit id …). The Salia **does** natively accept an *SMA Energy Meter*
-over multicast — so we present HA's data as one.
+over multicast (SMA Speedwire) — so this integration presents HA's data as one.
 
 ## Requirements
 
