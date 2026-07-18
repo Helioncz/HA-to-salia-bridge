@@ -26,8 +26,8 @@ CONF_SALIA_NAME_2 = "salia_name_2"
 DEFAULT_SERIAL = 1900000000
 DEFAULT_SUSYID = 349            # SMA Energy Meter SusyID
 DEFAULT_NAME = "Salia Bridge"
-DEFAULT_NAME_1 = "Nabíječka 1"
-DEFAULT_NAME_2 = "Nabíječka 2"
+DEFAULT_NAME_1 = "Nabíječka levá"
+DEFAULT_NAME_2 = "Nabíječka pravá"
 
 # --- SMA Speedwire multicast ---
 SMA_MCAST_GRP = "239.12.255.254"

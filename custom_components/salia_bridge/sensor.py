@@ -24,6 +24,7 @@ async def async_setup_entry(
     entities: list[SensorEntity] = []
     for coord in data["coordinators"]:
         entities.append(SaliaPowerSensor(coord))
+        entities.append(SaliaOfferedCurrentSensor(coord))
         entities.append(SaliaCurrentLimitSensor(coord))
         entities.append(SaliaStateSensor(coord))
     async_add_entities(entities)
@@ -59,6 +60,24 @@ class SaliaPowerSensor(_SaliaBase):
         try:
             offered = p0["ci"]["evse"]["basic"]["power"]["offered"]
             return round(float(offered))
+        except (KeyError, TypeError, ValueError):
+            return None
+
+
+class SaliaOfferedCurrentSensor(_SaliaBase):
+    _attr_translation_key = "charger_offered_current"
+    _attr_native_unit_of_measurement = UnitOfElectricCurrent.AMPERE
+    _attr_device_class = SensorDeviceClass.CURRENT
+    _attr_state_class = SensorStateClass.MEASUREMENT
+
+    def __init__(self, coordinator) -> None:
+        super().__init__(coordinator, "offered_current")
+
+    @property
+    def native_value(self) -> float | None:
+        p0 = self.coordinator.port0()
+        try:
+            return round(float(p0["ci"]["evse"]["basic"]["current"]["offered"]), 1)
         except (KeyError, TypeError, ValueError):
             return None
 
