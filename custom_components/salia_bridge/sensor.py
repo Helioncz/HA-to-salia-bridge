@@ -7,7 +7,7 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import UnitOfElectricCurrent, UnitOfPower
+from homeassistant.const import EntityCategory, UnitOfElectricCurrent, UnitOfPower
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
@@ -28,6 +28,7 @@ async def async_setup_entry(
         entities.append(SaliaOfferedCurrentSensor(coord))
         entities.append(SaliaCurrentLimitSensor(coord))
         entities.append(SaliaStateSensor(coord))
+        entities.append(SaliaMeterStatusSensor(coord))
     async_add_entities(entities)
 
 
@@ -144,3 +145,19 @@ class SaliaStateSensor(_SaliaBase):
         if state is None:
             return None
         return CP_STATE_MAP.get(state, state)
+
+
+class SaliaMeterStatusSensor(_SaliaBase):
+    """Status of the charger's mains meter (e.g. OK / 'SMA error: No data')."""
+
+    _attr_translation_key = "meter_status"
+    _attr_icon = "mdi:meter-electric"
+    _attr_entity_category = EntityCategory.DIAGNOSTIC
+
+    def __init__(self, coordinator) -> None:
+        super().__init__(coordinator, "meter_status")
+
+    @property
+    def native_value(self) -> str | None:
+        p0 = self.coordinator.port0()
+        return (p0.get("salia") or {}).get("mains_status")

@@ -67,6 +67,9 @@
       },
       "charger_state": {
         "name": "Stav"
+      },
+      "meter_status": {
+        "name": "Stav elektroměru"
       }
     },
     "number": {

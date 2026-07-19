@@ -67,6 +67,9 @@
       },
       "charger_state": {
         "name": "State"
+      },
+      "meter_status": {
+        "name": "Meter status"
       }
     },
     "number": {
