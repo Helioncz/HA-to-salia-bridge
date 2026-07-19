@@ -81,6 +81,16 @@
       "charging_enabled": {
         "name": "Nabíjení povoleno"
       }
+    },
+    "select": {
+      "charge_mode": {
+        "name": "Režim nabíjení",
+        "state": {
+          "eco": "Eco (přebytky FV)",
+          "power": "Power (dynamicky)",
+          "manual": "Quick (max)"
+        }
+      }
     }
   }
 }

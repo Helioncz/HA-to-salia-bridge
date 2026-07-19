@@ -81,6 +81,16 @@
       "charging_enabled": {
         "name": "Charging enabled"
       }
+    },
+    "select": {
+      "charge_mode": {
+        "name": "Charge mode",
+        "state": {
+          "eco": "Eco (PV surplus)",
+          "power": "Power (dynamic)",
+          "manual": "Quick (max)"
+        }
+      }
     }
   }
 }
