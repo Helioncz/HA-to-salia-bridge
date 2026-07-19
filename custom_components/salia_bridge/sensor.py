@@ -80,12 +80,19 @@ class SaliaActualPowerSensor(_SaliaBase):
     def native_value(self) -> float | None:
         p0 = self.coordinator.port0()
         meter = (p0.get("metering") or {}).get("meter") or {}
-        if str(meter.get("available")) != "1":
-            return None  # no meter on this charger
-        try:
-            return round(float(p0["metering"]["power"]["active_total"]["actual"]))
-        except (KeyError, TypeError, ValueError):
-            return None
+        if str(meter.get("available")) == "1":
+            # charger has its own meter -> real measured power
+            try:
+                return round(float(p0["metering"]["power"]["active_total"]["actual"]))
+            except (KeyError, TypeError, ValueError):
+                return None
+        # no meter -> estimate: offered power while charging (CP state C), else 0
+        if (p0.get("cp") or {}).get("state") == "C":
+            try:
+                return round(float(p0["ci"]["evse"]["basic"]["power"]["offered"]))
+            except (KeyError, TypeError, ValueError):
+                return None
+        return 0
 
 
 class SaliaOfferedCurrentSensor(_SaliaBase):
